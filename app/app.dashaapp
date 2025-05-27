@@ -1,0 +1,21 @@
+{
+  "formatVersion": "2",
+  "dialogue": {
+      "file": "main.dsl"
+  },
+  "nlu": {
+      "language": "ru-RU",
+      "skills": []
+  },
+  "nlg": {
+      "type": "phrases",
+      "file": "phrasemap.json"
+  },
+  "name": "agent-training-test",
+  "description": "Live Agent Coaching and Training AI Agent Template",
+  "channels": {
+    "sip": {
+      "inbound": true
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "dasha-asterisk",
+  "version": "1.0.0",
+  "description": "Dasha Asterisk config generator",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@dasha.ai/sdk": "^0.6.5",
+    "yargs": "^17.7.2"
+  },
+  "type": "module"
+}
