@@ -2,6 +2,12 @@
 # ВАЖНО: Замените YOUR_OPENAI_API_KEY на ваш новый API ключ
 OPENAI_API_KEY=your_new_openai_api_key_here
 
+# OpenAI Model Configuration
+# Рекомендуемые модели: openai/gpt-4o-mini, openai/gpt-4o, openai/gpt-4-turbo
+# Избегайте экспериментальных моделей: openai/gpt-5-fast, openai/gpt-5
+LLM_MODEL=openai/gpt-4o-mini
+OPENAI_MODEL=openai/gpt-4o-mini
+
 # Dasha SDK Configuration (автоматически устанавливается из OPENAI_API_KEY)
 # DASHA_OPENAI_API_KEY=your_new_openai_api_key_here
 
