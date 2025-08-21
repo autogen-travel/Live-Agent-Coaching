@@ -2,6 +2,9 @@
 # ВАЖНО: Замените YOUR_OPENAI_API_KEY на ваш новый API ключ
 OPENAI_API_KEY=your_new_openai_api_key_here
 
+# Dasha SDK Configuration (автоматически устанавливается из OPENAI_API_KEY)
+# DASHA_OPENAI_API_KEY=your_new_openai_api_key_here
+
 # Dasha Configuration
 DASHA_ENDPOINT=your_dasha_endpoint_here
 DASHA_API_KEY=your_dasha_api_key_here

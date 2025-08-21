@@ -22,9 +22,16 @@ fi
 echo "Загружаем переменные из .env файла..."
 export $(cat .env | grep -v '^#' | xargs)
 
-# 4. Проверяем, что переменные загружены
+# 4. Устанавливаем переменные для Dasha SDK
+if [ ! -z "$OPENAI_API_KEY" ]; then
+    echo "Устанавливаем DASHA_OPENAI_API_KEY..."
+    export DASHA_OPENAI_API_KEY="$OPENAI_API_KEY"
+fi
+
+# 5. Проверяем, что переменные загружены
 echo "Проверяем загруженные переменные:"
 echo "OPENAI_API_KEY: ${OPENAI_API_KEY:0:10}..."
+echo "DASHA_OPENAI_API_KEY: ${DASHA_OPENAI_API_KEY:0:10}..."
 echo "DASHA_API_KEY: ${DASHA_API_KEY:0:10}..."
 echo "DASHA_ENDPOINT: $DASHA_ENDPOINT"
 
