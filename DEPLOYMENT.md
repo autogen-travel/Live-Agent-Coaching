@@ -13,22 +13,30 @@ git pull origin main
 2. Создайте новый API ключ
 3. Скопируйте его
 
-### 3. Настройте переменную окружения на сервере
+### 3. Настройте переменные окружения на сервере
 
-#### Вариант 1: Временно (для тестирования)
+#### Рекомендуемый способ: Использование .env файла
+```bash
+# Скопируйте пример конфигурации
+cp config.example .env
+
+# Отредактируйте .env файл и замените значения на реальные
+nano .env
+```
+
+Содержимое файла `.env`:
+```bash
+# OpenAI API Configuration
+OPENAI_API_KEY=your_new_api_key_here
+
+# Dasha Configuration
+DASHA_ENDPOINT=your_dasha_endpoint_here
+DASHA_API_KEY=your_dasha_api_key_here
+```
+
+#### Альтернативный способ: Переменные окружения
 ```bash
 export OPENAI_API_KEY=your_new_api_key_here
-```
-
-#### Вариант 2: Постоянно (добавьте в ~/.bashrc или ~/.profile)
-```bash
-echo 'export OPENAI_API_KEY=your_new_api_key_here' >> ~/.bashrc
-source ~/.bashrc
-```
-
-#### Вариант 3: Создайте файл .env на сервере
-```bash
-echo "OPENAI_API_KEY=your_new_api_key_here" > .env
 ```
 
 ### 4. Перезапустите приложение

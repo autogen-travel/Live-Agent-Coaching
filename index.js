@@ -1,4 +1,8 @@
 import * as dasha from "@dasha.ai/sdk";
+import dotenv from 'dotenv';
+
+// Загружаем переменные из .env файла
+dotenv.config();
 
 async function main() {
   const app = await dasha.deploy("./app", { groupName: "Default" });
@@ -8,8 +12,10 @@ async function main() {
 
     conv.audio.tts = "dasha";
 
-    // Получаем API ключ из переменных окружения
+    // Получаем API ключ из .env файла или переменных окружения
     const openAiApiKey = process.env.OPENAI_API_KEY || null;
+    
+    console.log("Using API key:", openAiApiKey ? "Set" : "Not set");
     
     const result = await conv.execute({ 
       channel: "audio",

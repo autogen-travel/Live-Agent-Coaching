@@ -11,13 +11,19 @@ API ключи OpenAI **НИКОГДА** не должны храниться в
 
 ### Как правильно настроить API ключ:
 
-#### Вариант 1: Переменные окружения (рекомендуется)
+#### Вариант 1: Файл .env (рекомендуется)
 1. Создайте файл `.env` в корне проекта:
 ```bash
+# OpenAI API Configuration
 OPENAI_API_KEY=your_new_openai_api_key_here
+
+# Dasha Configuration
+DASHA_ENDPOINT=your_dasha_endpoint_here
+DASHA_API_KEY=your_dasha_api_key_here
 ```
 
 2. Убедитесь, что `.env` добавлен в `.gitignore` (уже добавлен)
+3. Приложение автоматически загрузит переменные из `.env` файла
 
 #### Вариант 2: Конфигурация Dasha
 Настройте API ключ через консоль Dasha или переменные окружения системы.
