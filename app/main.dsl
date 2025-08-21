@@ -17,8 +17,9 @@ context {
     // Your inputs
     input endpoint: string = "";
     input llmModel: string = "openai/gpt-5";
-    input openAiApiKey: string? = "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";
-    //input openAiApiKey: string? = null;
+    // API ключ должен быть установлен через переменную окружения OPENAI_API_KEY
+    // или через конфигурацию Dasha
+    input openAiApiKey: string? = null;
     input openAiModel: string = "openai/gpt-5";
 
     // System variables
