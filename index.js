@@ -17,7 +17,16 @@ async function main() {
     process.env.DASHA_OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   }
 
-  const app = await dasha.deploy("./app", { groupName: "Default" });
+  // Передаем API ключ в параметры развертывания
+  const deployOptions = {
+    groupName: "Default",
+    env: {
+      OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+      DASHA_OPENAI_API_KEY: process.env.OPENAI_API_KEY
+    }
+  };
+
+  const app = await dasha.deploy("./app", deployOptions);
 
   app.queue.on("ready", async (key, conv, info) => {
     console.log(info.sip);
@@ -34,9 +43,17 @@ async function main() {
     console.log("API Key starts with:", openAiApiKey ? openAiApiKey.substring(0, 10) + "..." : "N/A");
     console.log("==========================");
     
+    // Устанавливаем переменные окружения для процесса выполнения
+    if (openAiApiKey) {
+      process.env.OPENAI_API_KEY = openAiApiKey;
+      process.env.DASHA_OPENAI_API_KEY = openAiApiKey;
+    }
+    
     const result = await conv.execute({ 
       channel: "audio",
-      openAiApiKey: openAiApiKey  // Передаем API ключ в параметры контекста
+      openAiApiKey: openAiApiKey,  // Передаем API ключ в параметры контекста
+      // Также передаем в формате, который ожидает Dasha
+      openai_apikey: openAiApiKey
     });
     console.log(result.output);
   });
