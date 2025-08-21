@@ -8,7 +8,13 @@ async function main() {
 
     conv.audio.tts = "dasha";
 
-    const result = await conv.execute({ channel: "audio" });
+    // Получаем API ключ из переменных окружения
+    const openAiApiKey = process.env.OPENAI_API_KEY || null;
+    
+    const result = await conv.execute({ 
+      channel: "audio",
+      openAiApiKey: openAiApiKey
+    });
     console.log(result.output);
   });
 
