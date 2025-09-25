@@ -7,7 +7,7 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Загружаем переменные из .env файла (с явным указанием пути)
+// Загружаем переменные из .env файла
 const envPath = join(__dirname, '.env');
 dotenv.config({ path: envPath });
 
@@ -17,16 +17,12 @@ async function main() {
     process.env.DASHA_OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   }
 
-  // Передаем API ключ в параметры развертывания
-  const deployOptions = {
-    groupName: "Default", // Используем группу по умолчанию
-    env: {
-      OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-      DASHA_OPENAI_API_KEY: process.env.OPENAI_API_KEY
-    }
-  };
-
-  const app = await dasha.deploy("./app", deployOptions);
+  console.log("=== Подключение к развернутому приложению ===");
+  
+  // Подключаемся к уже развернутому приложению без повторного деплоя
+  const app = await dasha.connect({
+    groupName: "Default"
+  });
 
   app.queue.on("ready", async (key, conv, info) => {
     console.log(info.sip);
@@ -43,16 +39,9 @@ async function main() {
     console.log("API Key starts with:", openAiApiKey ? openAiApiKey.substring(0, 10) + "..." : "N/A");
     console.log("==========================");
     
-    // Устанавливаем переменные окружения для процесса выполнения
-    if (openAiApiKey) {
-      process.env.OPENAI_API_KEY = openAiApiKey;
-      process.env.DASHA_OPENAI_API_KEY = openAiApiKey;
-    }
-    
     const result = await conv.execute({ 
       channel: "audio",
-      openAiApiKey: openAiApiKey,  // Передаем API ключ в параметры контекста
-      // Также передаем в формате, который ожидает Dasha
+      openAiApiKey: openAiApiKey,
       openai_apikey: openAiApiKey
     });
     console.log(result.output);
