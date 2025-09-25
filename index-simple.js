@@ -17,13 +17,10 @@ async function main() {
     process.env.DASHA_OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   }
 
-  console.log("=== Подключение к развернутому приложению ===");
+  console.log("=== Запуск приложения ===");
   
-  // Подключаемся к уже развернутому приложению
-  // Используем deploy с той же группой, что и при развертывании
-  const app = await dasha.deploy("./app", {
-    groupName: "Default"
-  });
+  // Простое развертывание без дополнительных параметров
+  const app = await dasha.deploy("./app");
 
   app.queue.on("ready", async (key, conv, info) => {
     console.log(info.sip);
