@@ -16,11 +16,11 @@ context {
 
     // Your inputs
     input endpoint: string = "";
-    input llmModel: string = "openai/gpt-4o-mini";
+    input llmModel: string = "openai/gpt-4o";
     // API ключ должен быть установлен через переменную окружения OPENAI_API_KEY
     // или через конфигурацию Dasha
     input openAiApiKey: string? = null;
-    input openAiModel: string = "openai/gpt-4o-mini";
+    input openAiModel: string = "openai/gpt-4o";
 
     // System variables
     finished: boolean = false;
